@@ -2946,6 +2946,15 @@ type AppExtension implements Node @doc(category: "Apps") {
 
 """All places where app extension can be mounted."""
 enum AppExtensionMountEnum @doc(category: "Apps") {
+  CATEGORY_OVERVIEW_CREATE
+  CATEGORY_OVERVIEW_MORE_ACTIONS
+  CATEGORY_DETAILS_MORE_ACTIONS
+  COLLECTION_OVERVIEW_CREATE
+  COLLECTION_OVERVIEW_MORE_ACTIONS
+  COLLECTION_DETAILS_MORE_ACTIONS
+  GIFT_CARD_OVERVIEW_CREATE
+  GIFT_CARD_OVERVIEW_MORE_ACTIONS
+  GIFT_CARD_DETAILS_MORE_ACTIONS
   CUSTOMER_OVERVIEW_CREATE
   CUSTOMER_OVERVIEW_MORE_ACTIONS
   CUSTOMER_DETAILS_MORE_ACTIONS
@@ -2961,6 +2970,24 @@ enum AppExtensionMountEnum @doc(category: "Apps") {
   ORDER_DETAILS_MORE_ACTIONS
   ORDER_OVERVIEW_CREATE
   ORDER_OVERVIEW_MORE_ACTIONS
+  DRAFT_ORDER_DETAILS_MORE_ACTIONS
+  DRAFT_ORDER_OVERVIEW_CREATE
+  DRAFT_ORDER_OVERVIEW_MORE_ACTIONS
+  DISCOUNT_DETAILS_MORE_ACTIONS
+  DISCOUNT_OVERVIEW_CREATE
+  DISCOUNT_OVERVIEW_MORE_ACTIONS
+  VOUCHER_DETAILS_MORE_ACTIONS
+  VOUCHER_OVERVIEW_CREATE
+  VOUCHER_OVERVIEW_MORE_ACTIONS
+  PAGE_DETAILS_MORE_ACTIONS
+  PAGE_OVERVIEW_CREATE
+  PAGE_OVERVIEW_MORE_ACTIONS
+  PAGE_TYPE_OVERVIEW_CREATE
+  PAGE_TYPE_OVERVIEW_MORE_ACTIONS
+  PAGE_TYPE_DETAILS_MORE_ACTIONS
+  MENU_OVERVIEW_CREATE
+  MENU_OVERVIEW_MORE_ACTIONS
+  MENU_DETAILS_MORE_ACTIONS
 }
 
 """
@@ -2972,6 +2999,7 @@ All available ways of opening an app extension.
 enum AppExtensionTargetEnum @doc(category: "Apps") {
   POPUP
   APP_PAGE
+  NEW_TAB
 }
 
 """Represents the app's brand data."""
@@ -12840,6 +12868,18 @@ input OrderWhereInput @doc(category: "Orders") {
   """Filter by voucher code used in the order."""
   voucherCode: StringFilterInput
 
+  """Filter by whether the order has any invoices."""
+  hasInvoices: Boolean
+
+  """Filter by invoice data associated with the order."""
+  invoices: InvoiceFilterInput
+
+  """Filter by whether the order has any fulfillments."""
+  hasFulfillments: Boolean
+
+  """Filter by fulfillment data associated with the order."""
+  fulfillments: FulfillmentFilterInput
+
   """List of conditions that must be met."""
   AND: [OrderWhereInput!]
 
@@ -12893,6 +12933,27 @@ input UUIDFilterInput {
 
   """The value included in."""
   oneOf: [UUID!]
+}
+
+"""Filter input for invoices."""
+input InvoiceFilterInput @doc(category: "Orders") {
+  """Filter invoices by creation date."""
+  createdAt: DateTimeRangeInput
+}
+
+"""Filter input for fulfillments."""
+input FulfillmentFilterInput @doc(category: "Orders") {
+  """Filter by fulfillment status."""
+  status: FulfillmentStatusEnumFilterInput
+}
+
+"""Filter by fulfillment status."""
+input FulfillmentStatusEnumFilterInput @doc(category: "Orders") {
+  """The value equal to."""
+  eq: FulfillmentStatus
+
+  """The value included in."""
+  oneOf: [FulfillmentStatus!]
 }
 
 input OrderDraftFilterInput @doc(category: "Orders") {
