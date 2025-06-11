@@ -1077,12 +1077,3 @@ patch_db()
 # Patch `Local` to remove all references that could result in reference cycles,
 # allowing memory to be freed immediately, without the need of a deep garbage collection cycle.
 patch_local()
-
-# ...existing code...
-
-# Add these lines to ensure console email output
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-ENABLE_ACCOUNT_CONFIRMATION_BY_EMAIL = True
-
-# Make sure you have these email settings
-DEFAULT_FROM_EMAIL = 'noreply@example.com'

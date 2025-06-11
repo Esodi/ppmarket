@@ -60,4 +60,7 @@ class CartService extends ChangeNotifier {
 
   int get totalItems =>
       _items.values.fold(0, (sum, item) => sum + item.quantity);
+
+  // Add this getter that was referenced in home_screen.dart
+  int get itemCount => totalItems;
 }

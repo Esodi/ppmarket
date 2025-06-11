@@ -1,0 +1,1 @@
+sudo docker compose exec saleor-api python3 manage.py confirm_user

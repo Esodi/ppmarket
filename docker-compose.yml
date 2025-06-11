@@ -1,4 +1,4 @@
-version: "3.9"
+
 
 services:
   db:
@@ -27,7 +27,7 @@ services:
       timeout: 5s
       retries: 10
 
-  saleor:
+  saleor-api:
     image: ghcr.io/saleor/saleor:3.20
     container_name: saleor-api
     ports:
